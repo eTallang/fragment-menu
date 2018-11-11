@@ -9,6 +9,7 @@ $focus-color: #e80c7a;
   justify-content: center;
   left: 20px;
   top: 0;
+  overflow: auto;
 
   a {
     background: transparent;
@@ -26,7 +27,7 @@ $focus-color: #e80c7a;
       color: $focus-color;
     }
 
-    &:focus:not(.active) {
+    &:focus:not(.active):not(:active) {
       margin-left: 30px;
     }
 
