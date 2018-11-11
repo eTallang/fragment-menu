@@ -1,0 +1,18 @@
+{
+    "/randomuser/*": {
+      "target": "https://randomuser.me",
+      "secure": false,
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/randomuser": ""
+      }
+    },
+    "/baseballipsum/*": {
+      "target": "https://baseballipsum.apphb.com",
+      "secure": false,
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/baseballipsum": ""
+      }
+    }
+  }
