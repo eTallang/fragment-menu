@@ -12,6 +12,7 @@ import * as scrollToElement from 'scroll-to-element';
 export class AppComponent implements OnInit {
   articles: Article[] = [];
   focusedArticle: Article;
+  waitingForArticles = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -25,8 +26,10 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.waitingForArticles = true;
     this.articleService.getArticles(10).subscribe(articles => {
       this.articles = articles;
+      this.waitingForArticles = false;
       this.changeDetectorRef.detectChanges();
       scrollToElement(`#${this.route.snapshot.fragment}`, {
         ease: 'in-out-cube',
