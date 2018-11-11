@@ -27,14 +27,6 @@ $focus-color: #e80c7a;
       color: $focus-color;
     }
 
-    &:focus:not(.active):not(:active) {
-      margin-left: 30px;
-    }
-
-    &:focus {
-      outline: none;
-    }
-
     &.active {
       font-size: 1rem;
       letter-spacing: 4.5px;

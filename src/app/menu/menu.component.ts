@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import * as scrollToElement from 'scroll-to-element';
+
 import { Article } from '../article';
 
 @Component({
@@ -18,5 +20,12 @@ export class MenuComponent {
     }
 
     return -1;
+  }
+
+  scrollToElement(article: Article) {
+    scrollToElement(`#${article.id}`, {
+      ease: 'in-out-cube',
+      duration: 600
+    });
   }
 }

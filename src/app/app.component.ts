@@ -28,6 +28,10 @@ export class AppComponent implements OnInit {
     this.articleService.getArticles(10).subscribe(articles => {
       this.articles = articles;
       this.changeDetectorRef.detectChanges();
+      scrollToElement(`#${this.route.snapshot.fragment}`, {
+        ease: 'in-out-cube',
+        duration: 600
+      });
       this.getFragmentUpdates();
     });
   }
@@ -41,10 +45,6 @@ export class AppComponent implements OnInit {
   private getFragmentUpdates() {
     this.route.fragment.subscribe(fragment => {
       this.focusedArticle = this.articles.find(article => article.id === fragment);
-      scrollToElement(`#${fragment}`, {
-        ease: 'in-out-cube',
-        duration: 600
-      });
     });
   }
 }
