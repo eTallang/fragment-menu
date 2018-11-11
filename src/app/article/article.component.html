@@ -1,3 +1,5 @@
-<p>
-  article works!
-</p>
+<div class="article">
+  <h1 [id]="article.id">{{ article.title | titlecase }}</h1>
+  <div class="divider"></div>
+  <p>{{ article.body }}</p>
+</div>

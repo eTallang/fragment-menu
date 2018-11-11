@@ -1,0 +1,46 @@
+$focus-color: #e80c7a;
+
+.menu {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: flex-start;
+  justify-content: center;
+  left: 20px;
+  top: 0;
+
+  a {
+    background: transparent;
+    border: none;
+    font-size: .85rem;
+    display: block;
+    cursor: pointer;
+    margin: 6px 0;
+    color: black;
+    text-decoration: none;
+    transition: all .4s cubic-bezier(.2, 0, 0, 1);
+
+    &:hover,
+    &:focus {
+      color: $focus-color;
+    }
+
+    &.active {
+      font-size: 1.3rem;
+      letter-spacing: 2px;
+      margin: 16px 0;
+      color: $focus-color;
+    }
+
+    &.first-neighbour {
+      font-size: 1rem;
+      margin: 10px 0;
+    }
+
+    &.second-neighbour {
+      font-size: .95rem;
+      margin: 8px 0;
+    }
+  }
+}

@@ -1,3 +1,9 @@
-<p>
-  menu works!
-</p>
+<div class="menu">
+  <a
+    *ngFor="let article of articles"
+    [routerLink]="[]"
+    [fragment]="article.id"
+    [ngClass]="{'active': article.id === focusedArticle?.id, 'first-neighbour': distanceToActive(article) === 1, 'second-neighbour': distanceToActive(article) === 2}"
+    >{{ article.title | titlecase }}</a
+  >
+</div>

@@ -1,0 +1,27 @@
+.article {
+    height: 800px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 100px;
+    margin-right: 200px;
+
+    h1,
+    p {
+      text-align: center;
+    }
+    
+    p {
+        letter-spacing: .5px;
+        line-height: 1.8;
+        font-size: 1.1rem;
+    }
+
+    .divider {
+        height: 0;
+        width: 400px;
+        border-bottom: 2px dashed #e80c7a;
+        margin-bottom: 60px;
+    }
+}
