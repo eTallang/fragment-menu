@@ -1,5 +1,5 @@
 .article {
-    height: 800px;
+    height: 100vh;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -10,6 +10,13 @@
     h1,
     p {
       text-align: center;
+      user-select: none;
+    }
+
+    h1 {
+        font-size: 4rem;
+        margin-top: 10px;
+        margin-bottom: 20px;
     }
     
     p {
@@ -20,7 +27,7 @@
 
     .divider {
         height: 0;
-        width: 400px;
+        width: 200px;
         border-bottom: 2px dashed #e80c7a;
         margin-bottom: 60px;
     }

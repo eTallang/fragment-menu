@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { Article } from '../article';
-import * as scrollToElement from 'scroll-to-element';
 
 @Component({
   selector: 'app-menu',

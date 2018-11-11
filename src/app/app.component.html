@@ -1,5 +1,7 @@
 <app-menu [articles]="articles" [focusedArticle]="focusedArticle"></app-menu>
-<cdk-virtual-scroll-viewport class="content" itemSize="800">
+<!-- <cdk-virtual-scroll-viewport class="content" itemSize="800">
   <app-article [article]="article" *cdkVirtualFor="let article of articles"></app-article>
-</cdk-virtual-scroll-viewport>
-  <!-- <app-article [article]="article" *ngFor="let article of articles"></app-article> -->
+</cdk-virtual-scroll-viewport> -->
+<div class="content">
+  <app-article [article]="article" *ngFor="let article of articles" (isInFocus)="setFocusedArticle($event)"></app-article>
+</div>

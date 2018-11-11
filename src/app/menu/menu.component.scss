@@ -20,27 +20,32 @@ $focus-color: #e80c7a;
     color: black;
     text-decoration: none;
     transition: all .4s cubic-bezier(.2, 0, 0, 1);
+    user-select: none;
 
-    &:hover,
-    &:focus {
+    &:hover {
       color: $focus-color;
     }
 
+    &:focus:not(.active) {
+      margin-left: 30px;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
     &.active {
-      font-size: 1.3rem;
-      letter-spacing: 2px;
-      margin: 16px 0;
+      font-size: 1rem;
+      letter-spacing: 4.5px;
       color: $focus-color;
     }
 
     &.first-neighbour {
-      font-size: 1rem;
-      margin: 10px 0;
+      letter-spacing: 1.5px;
     }
 
     &.second-neighbour {
-      font-size: .95rem;
-      margin: 8px 0;
+      letter-spacing: .3px;
     }
   }
 }
