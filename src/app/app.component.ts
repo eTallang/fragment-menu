@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ArticleService } from './article.service';
 import { Article } from './article';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private changeDetectorRef: ChangeDetectorRef,
     private articleService: ArticleService
   ) {}
 
@@ -26,6 +27,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.articleService.getArticles(10).subscribe(articles => {
       this.articles = articles;
+      this.changeDetectorRef.detectChanges();
       this.getFragmentUpdates();
     });
   }
