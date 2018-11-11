@@ -1,4 +1,4 @@
-<div class="menu">
+<div class="menu" [@listAnimation]="filteredArticles.length">
   <input placeholder="Filter" class="filter-input" [hidden]="!articles.length" #filterInput>
   <a
     *ngFor="let article of filteredArticles"

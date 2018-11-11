@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { HttpClientModule } from '@angular/common/http';
@@ -15,7 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
     ArticleComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserAnimationsModule,
     ScrollingModule,
     HttpClientModule,
     AppRoutingModule
