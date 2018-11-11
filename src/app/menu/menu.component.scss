@@ -6,10 +6,25 @@ $focus-color: #e80c7a;
   flex-direction: column;
   height: 100%;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
   left: 20px;
   top: 0;
   overflow: auto;
+
+  .filter-input {
+    background: transparent;
+    border: none;
+    font-size: .85rem;
+    margin: 60px 0;
+    border: 2px dashed transparent;
+    transition: all .3s ease-in-out;
+    min-width: 180px;
+
+    &:focus {
+      outline: none;
+      border-bottom-color: $focus-color;
+    }
+  }
 
   a {
     background: transparent;
