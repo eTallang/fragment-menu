@@ -24,7 +24,7 @@ import { Article } from '../article';
         query(
           ':enter',
           animate(
-            '500ms cubic-bezier(0.6, 0, 0, 1)',
+            '300ms cubic-bezier(0.2, 0, 0, 1)',
             keyframes([
               style({ opacity: 0, height: 0, offset: 0 }),
               style({ opacity: 1, height: '*', offset: 1 })
@@ -35,7 +35,7 @@ import { Article } from '../article';
         query(
           ':leave',
           animate(
-            '500ms cubic-bezier(0.6, 0, 0.1, 1)',
+            '300ms cubic-bezier(0.2, 0, 0.1, 1)',
             style({ height: 0, opacity: 0 })
           ),
           {
@@ -54,7 +54,7 @@ export class MenuComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     fromEvent(this.filterInput.nativeElement, 'input')
-      .pipe(debounceTime(200))
+      .pipe(debounceTime(150))
       .subscribe((ev: Event) => {
         const val = this.filterInput.nativeElement.value;
         this.filteredArticles = this.articles.filter(
