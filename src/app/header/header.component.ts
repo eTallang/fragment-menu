@@ -8,7 +8,7 @@ import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 })
 export class HeaderComponent implements OnInit {
   @Input() scrollContainer: CdkVirtualScrollViewport;
-  initialHeight = 600;
+  initialHeight = 400;
   calculatedHeight = this.initialHeight;
   expanded = true;
   expansionManuallyToggeled = false;
@@ -43,6 +43,6 @@ export class HeaderComponent implements OnInit {
   }
 
   setTogglehedHeight(): void {
-    this.calculatedHeight = this.expanded ? 600 : 50;
+    this.calculatedHeight = this.expanded ? 400 : 50;
   }
 }

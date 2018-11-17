@@ -14,12 +14,12 @@
   
   .content-container {
     flex: auto;
-    height: 100%;
+    display: flex;
     position: relative;
 
     .article-list {
-      height: 100%;
       margin-left: 200px;
+      width: 100%;
     }
   }  
 }
