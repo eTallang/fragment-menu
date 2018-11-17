@@ -5,12 +5,13 @@ import {
   ElementRef,
   OnInit,
   OnChanges,
-  SimpleChanges
+  SimpleChanges,
+  Output,
+  EventEmitter
 } from '@angular/core';
 import { trigger, transition, animate, keyframes, style, query } from '@angular/animations';
 import { fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-import * as scrollToElement from 'scroll-to-element';
 
 import { Article } from '../article';
 
@@ -49,6 +50,7 @@ import { Article } from '../article';
 export class MenuComponent implements OnInit, OnChanges {
   @Input() articles: Article[] = [];
   @Input() focusedArticle: Article;
+  @Output() focusArticle = new EventEmitter<Article>();
   @ViewChild('filterInput') filterInput: ElementRef<HTMLInputElement>;
   filteredArticles: Article[] = this.articles;
 
@@ -79,10 +81,7 @@ export class MenuComponent implements OnInit, OnChanges {
     return -1;
   }
 
-  scrollToElement(article: Article) {
-    scrollToElement(`#${article.id}`, {
-      ease: 'in-out-cube',
-      duration: 600
-    });
+  goToElement(article: Article) {
+    this.focusArticle.emit(article);
   }
 }

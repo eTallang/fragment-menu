@@ -1,6 +1,7 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { ScrollingModule } from '@angular/cdk/scrolling';
+import { ScrollingModule } from '@angular/cdk-experimental/scrolling';
+import { ScrollingModule as ExperimentalScrollingModule } from '@angular/cdk/scrolling';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -17,6 +18,7 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     BrowserAnimationsModule,
     ScrollingModule,
+    ExperimentalScrollingModule,
     HttpClientModule,
     AppRoutingModule
   ],

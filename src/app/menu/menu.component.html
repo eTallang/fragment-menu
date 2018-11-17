@@ -5,7 +5,7 @@
     [routerLink]="[]"
     [fragment]="article.id"
     [ngClass]="{'active': article.id === focusedArticle?.id, 'first-neighbour': distanceToActive(article) === 1, 'second-neighbour': distanceToActive(article) === 2}"
-    (click)="scrollToElement(article)">
+    (click)="goToElement(article)">
     {{ article.title | titlecase }}
   </a>
 </div>

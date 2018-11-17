@@ -1,8 +1,8 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { ArticleService } from './article.service';
 import { Article } from './article';
 import { ActivatedRoute, Router } from '@angular/router';
-import * as scrollToElement from 'scroll-to-element';
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +10,7 @@ import * as scrollToElement from 'scroll-to-element';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  @ViewChild(CdkVirtualScrollViewport) scrollContainer: CdkVirtualScrollViewport;
   articles: Article[] = [];
   focusedArticle: Article;
   waitingForArticles = false;
@@ -17,37 +18,32 @@ export class AppComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private changeDetectorRef: ChangeDetectorRef,
-    private articleService: ArticleService
+    private articleService: ArticleService,
+    private changeDetector: ChangeDetectorRef
   ) {}
 
   scrollToArticle(article: Article): void {
-    this.focusedArticle = article;
+    this.scrollContainer.scrollToIndex(article.id, 'smooth');
   }
 
   ngOnInit() {
     this.waitingForArticles = true;
-    this.articleService.getArticles(10).subscribe(articles => {
+    this.articleService.getArticles(20).subscribe(articles => {
       this.articles = articles;
       this.waitingForArticles = false;
-      this.changeDetectorRef.detectChanges();
-      scrollToElement(`#${this.route.snapshot.fragment}`, {
-        ease: 'in-out-cube',
-        duration: 600
-      });
-      this.getFragmentUpdates();
+      // We have to make sure the list is rendered before we can scroll to the appropriate article
+      this.changeDetector.detectChanges();
+      this.scrollContainer.scrollToIndex(+this.route.snapshot.fragment);
+      this.listenToScrolledIndexChange();
     });
   }
 
-  setFocusedArticle(article: Article): void {
-    this.router.navigate([], {
-      fragment: article.id
-    });
-  }
-
-  private getFragmentUpdates() {
-    this.route.fragment.subscribe(fragment => {
-      this.focusedArticle = this.articles.find(article => article.id === fragment);
+  private listenToScrolledIndexChange(): void {
+    this.scrollContainer.scrolledIndexChange.subscribe(index => {
+      if (this.articles) {
+        this.focusedArticle = this.articles.find(article => article.id === index);
+        this.router.navigate([], { fragment: index.toString()});
+      }
     });
   }
 }

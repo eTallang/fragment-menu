@@ -31,25 +31,26 @@ export class ArticleService {
   constructor(private http: HttpClient) { }
 
   getArticles(count: number): Observable<Article[]> {
-    return combineLatest(this.getNames(count), this.getBodies()).pipe(map((value: [RandomUser, string[]]) => {
+    return combineLatest(this.getNames(), this.getBodies()).pipe(map((value: [RandomUser, string[]]) => {
       const articles: Article[] = [];
       const names = value[0];
       const bodies = value[1];
-      let id = 1;
-      names.results.forEach(name => {
+      for (let i = 0; i < count; i++) {
+        const randomName = names.results[Math.floor(Math.random() * names.results.length)];
+        const randomBody = bodies[Math.floor(Math.random() * bodies.length)];
         articles.push({
-          title: `${name.name.first} ${name.name.last}`,
-          body: bodies[Math.floor(Math.random() * bodies.length)],
-          id: `article-${id++}`
+          title: `${randomName.name.first} ${randomName.name.last}`,
+          body: randomBody,
+          id: i
         });
-      });
+      }
 
       return articles;
     }));
   }
 
-  private getNames(count: number): Observable<RandomUser> {
-    return this.http.get<RandomUser>(`/randomuser/api/?results=${count}`);
+  private getNames(): Observable<RandomUser> {
+    return this.http.get<RandomUser>(`/randomuser/api/?results=${20}`);
   }
 
   private getBodies(): Observable<string[]> {
