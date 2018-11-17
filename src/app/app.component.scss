@@ -7,7 +7,20 @@
   position: absolute;
 }
 
-.content {
+.page-container {
+  display: flex;
+  flex-direction: column;
   height: 100%;
-  margin-left: 200px;
+  
+  .content-container {
+    flex: auto;
+    height: 100%;
+    position: relative;
+
+    .article-list {
+      height: 100%;
+      margin-left: 200px;
+    }
+  }  
 }
+

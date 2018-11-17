@@ -1,7 +1,12 @@
 <div class="loading-container" *ngIf="waitingForArticles">
   <h2>Getting articles. Hang tight...</h2>
 </div>
-<app-menu [articles]="articles" [focusedArticle]="focusedArticle" (focusArticle)="scrollToArticle($event)"></app-menu>
-<cdk-virtual-scroll-viewport class="content" itemSize="800">
-  <app-article [article]="article" *cdkVirtualFor="let article of articles"></app-article>
-</cdk-virtual-scroll-viewport>
+<div class="page-container">
+  <app-header *ngIf="!waitingForArticles" [scrollContainer]="scrollContainer"></app-header>
+  <div class="content-container">
+    <app-menu [articles]="articles" [focusedArticle]="focusedArticle" (focusArticle)="scrollToArticle($event)"></app-menu>
+    <cdk-virtual-scroll-viewport class="article-list" itemSize="800">
+      <app-article [article]="article" *cdkVirtualFor="let article of articles"></app-article>
+    </cdk-virtual-scroll-viewport>
+  </div>
+</div>

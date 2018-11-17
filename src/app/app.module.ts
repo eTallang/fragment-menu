@@ -8,12 +8,14 @@ import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { ArticleComponent } from './article/article.component';
 import { AppRoutingModule } from './app-routing.module';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
-    ArticleComponent
+    ArticleComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserAnimationsModule,

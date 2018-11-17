@@ -28,6 +28,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.waitingForArticles = true;
+    this.scrollContainer.setRenderedContentOffset(600);
     this.articleService.getArticles(20).subscribe(articles => {
       this.articles = articles;
       this.waitingForArticles = false;
