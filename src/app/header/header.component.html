@@ -1,6 +1,17 @@
-<div class="header" [style.height]="calculatedHeight + 'px'" [ngClass]="{'transition-height': expansionManguallyToggeled}">
-  <h1 [ngStyle]="{ 'transform': 'translateX(-45vw) translateY(-260px) scale(.3)' }">Personas</h1>
-  <p [ngStyle]="{'opacity': percentageOpen}">Virtual scroll test</p>
+<div
+  class="header"
+  [ngStyle]="{height: calculatedHeight + 'px'}"
+  [ngClass]="{ 'transition-height': expansionManuallyToggeled }"
+>
+  <h1
+    [ngStyle]="{
+      'transform': 'translateX(calc(-45vw * ' + (1 - percentageOpen)  + ')) translateY(calc(10px * ' + (1 - percentageOpen)  + ')) scale(calc(' + percentageOpen + ' + .3))'
+    }"
+    [ngClass]="{'transition-transform': expansionManuallyToggeled }"
+  >
+    Personas
+  </h1>
+  <p [ngStyle]="{ opacity: percentageOpen }">Virtual scroll test</p>
   <button class="icon-button" (click)="toggleExpansion()" [ngClass]="{ expanded: expanded }">
     <i class="material-icons">keyboard_arrow_down</i>
   </button>

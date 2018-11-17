@@ -11,7 +11,7 @@ export class HeaderComponent implements OnInit {
   initialHeight = 600;
   calculatedHeight = this.initialHeight;
   expanded = true;
-  expansionManguallyToggeled = false;
+  expansionManuallyToggeled = false;
   get percentageOpen(): number {
     return (this.calculatedHeight - 50) / (this.initialHeight - 50);
   }
@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.scrollContainer.elementScrolled().subscribe(() => {
-      if (this.expansionManguallyToggeled) {
+      if (this.expansionManuallyToggeled) {
         this.setTogglehedHeight();
       } else {
         const scrollOffset = this.scrollContainer.measureScrollOffset();
@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit {
 
         if (this.calculatedHeight === 50) {
           this.expanded = false;
-          this.expansionManguallyToggeled = true;
+          this.expansionManuallyToggeled = true;
         }
         this.changeDetector.detectChanges();
       }
@@ -37,7 +37,7 @@ export class HeaderComponent implements OnInit {
   }
 
   toggleExpansion() {
-    this.expansionManguallyToggeled = true;
+    this.expansionManuallyToggeled = true;
     this.expanded = !this.expanded;
     this.setTogglehedHeight();
   }
