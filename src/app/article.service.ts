@@ -1,27 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Observable, combineLatest } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-import { Article } from './article';
+import { Observable, combineLatest, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-interface RandomUser {
-  info: {
-    page: number;
-    results: number;
-    seed: string;
-    version: string;
-  };
-  results: {
-    gender: string;
-    email: string;
-    phone: string;
-    name: {
-      first: string;
-      last: string;
-      title: string;
-    }
-  }[];
-}
+import { Article } from './article';
+import { nameData, articleData } from './data';
+import { RandomUser } from './types';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -50,16 +35,22 @@ export class ArticleService {
   }
 
   private getNames(): Observable<RandomUser> {
-    return this.http.get<RandomUser>(`/randomuser/api/?results=${20}`);
+    if (environment.useHttp) {
+      return this.http.get<RandomUser>(`/randomuser/api/?results=${20}`);
+    }
+    return of(nameData);
   }
 
   private getBodies(): Observable<string[]> {
-    const article: Observable<string> = this.http.get<string[]>('/baseballipsum/api/?paras=2').pipe(map(texts => texts.join(' ')));
-    const requests: Observable<string>[] = [];
-    for (let i = 0; i < 5; i++) {
-      requests.push(article);
-    }
+    if (environment.useHttp) {
+      const article: Observable<string> = this.http.get<string[]>('/baseballipsum/api/?paras=2').pipe(map(texts => texts.join(' ')));
+      const requests: Observable<string>[] = [];
+      for (let i = 0; i < 5; i++) {
+        requests.push(article);
+      }
 
-    return combineLatest(requests);
+      return combineLatest(requests);
+    }
+    return of(articleData);
   }
 }
