@@ -28,8 +28,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.waitingForArticles = true;
-    this.scrollContainer.setRenderedContentOffset(600);
-    this.articleService.getArticles(20).subscribe(articles => {
+    this.articleService.getArticles(100).subscribe(articles => {
       this.articles = articles;
       this.waitingForArticles = false;
       // We have to make sure the list is rendered before we can scroll to the appropriate article

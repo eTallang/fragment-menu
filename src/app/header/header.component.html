@@ -5,13 +5,14 @@
 >
   <h1
     [ngStyle]="{
-      'transform': 'translateX(calc(-45vw * ' + (1 - percentageOpen)  + ')) translateY(calc(10px * ' + (1 - percentageOpen)  + ')) scale(calc(' + percentageOpen + ' + .3))'
+      'transform': 'translateX(calc(-50vw * ' + (1 - percentageOpen)  + ')) scale(' + (percentageOpen + 0.3) + ')',
+      'transform-origin': 50 + ((1 - percentageOpen) * 33) + '%'
     }"
     [ngClass]="{'transition-transform': expansionManuallyToggeled }"
   >
     Personas
   </h1>
-  <p [ngStyle]="{ opacity: percentageOpen }">Virtual scroll test</p>
+  <p [ngStyle]="{ opacity: percentageOpen, filter: 'blur(' + (1 - percentageOpen) * 10 + 'px)' }">Virtual scroll test</p>
   <button class="icon-button" (click)="toggleExpansion()" [ngClass]="{ expanded: expanded }">
     <i class="material-icons">keyboard_arrow_down</i>
   </button>
