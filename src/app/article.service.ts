@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 import { Article } from './article';
 import { nameData, articleData } from './data';
 import { RandomUser } from './types';
-import { environment } from 'src/environments/environment';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
